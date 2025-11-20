@@ -19,7 +19,7 @@ from .models import (
 )
 
 log = logging.getLogger("brawldogg")
-T = TypeVar('T', bound=BaseModel)
+T = TypeVar("T", bound=BaseModel)
 
 
 class BrawlStarsClient(HTTPClient):
@@ -59,7 +59,7 @@ class BrawlStarsClient(HTTPClient):
         model: Type[T],
         path_params: dict[str, Any] | None = None,
         query_params: dict[str, Any] | None = None,
-        cache_ttl: int | None = None
+        cache_ttl: int | None = None,
     ) -> T:
         """Helper for fetching a single object (e.g., Player, Club)."""
         endpoint = ENDPOINTS[endpoint_key].format(**(path_params or {}))
@@ -75,7 +75,7 @@ class BrawlStarsClient(HTTPClient):
         path_params: dict[str, Any] | None = None,
         query_params: dict[str, Any] | None = None,
         cache_ttl: int | None = None,
-        root_is_list: bool = False
+        root_is_list: bool = False,
     ) -> list[T]:
         """
         Helper for fetching a list of objects from an endpoint.
@@ -112,9 +112,7 @@ class BrawlStarsClient(HTTPClient):
     async def get_club(self, tag: str) -> Club:
         """Retrieve club information by tag."""
         tag = normalize_tag(tag)
-        return await self._fetch_single_endpoint(
-            "club", Club, path_params={"tag": tag}
-        )
+        return await self._fetch_single_endpoint("club", Club, path_params={"tag": tag})
 
     async def get_club_members(self, tag: str, *, limit: int = 30) -> list[ClubMember]:
         """Retrieve a club's members."""
@@ -123,17 +121,14 @@ class BrawlStarsClient(HTTPClient):
             "club_members",
             ClubMember,
             path_params={"tag": tag},
-            query_params={"limit": limit}
+            query_params={"limit": limit},
         )
 
     # Global/Static Data Methods (High TTL)
     async def get_gamemodes(self, *, limit: int = 100) -> list[GameMode]:
         """Retrieve a list of available game modes."""
         return await self._fetch_list_endpoint(
-            "gamemodes",
-            GameMode,
-            query_params={"limit": limit},
-            cache_ttl=60 * 60 * 24
+            "gamemodes", GameMode, query_params={"limit": limit}, cache_ttl=60 * 60 * 24
         )
 
     async def get_current_events(self) -> list[EventEntry]:
@@ -142,25 +137,19 @@ class BrawlStarsClient(HTTPClient):
             "events",
             EventEntry,
             cache_ttl=60 * 60,
-            root_is_list=True # Note: This endpoint returns a list directly, not an 'items' object.
+            root_is_list=True,  # Note: This endpoint returns a list directly, not an 'items' object.
         )
 
     async def get_brawlers(self, *, limit: int = 100) -> list[Brawler]:
         """Retrieve all brawlers."""
         return await self._fetch_list_endpoint(
-            "brawlers",
-            Brawler,
-            query_params={"limit": limit},
-            cache_ttl=60 * 60 * 24
+            "brawlers", Brawler, query_params={"limit": limit}, cache_ttl=60 * 60 * 24
         )
 
     async def get_brawler(self, brawler_id: int) -> Brawler:
         """Retrieve information for a specific brawler by ID."""
         return await self._fetch_single_endpoint(
-            "brawler",
-            Brawler,
-            path_params={"id": brawler_id},
-            cache_ttl=60 * 60 * 24
+            "brawler", Brawler, path_params={"id": brawler_id}, cache_ttl=60 * 60 * 24
         )
 
     # Rankings Methods

@@ -6,13 +6,14 @@ class RateLimiter:
     """
     Asynchronous Token Bucket Rate Limiter.
     """
+
     def __init__(self, rate: int = 20, per: float = 1.0):
         self.rate = rate  # Max tokens per 'per' period
-        self.per = per    # Time period (e.g., 1.0 second)
-        self.allowance = float(rate) # Initial tokens
+        self.per = per  # Time period (e.g., 1.0 second)
+        self.allowance = float(rate)  # Initial tokens
         self.last_check = time.time()
         self.lock = asyncio.Lock()
-        self.refill_time = self.per / self.rate # Time required to earn one token
+        self.refill_time = self.per / self.rate  # Time required to earn one token
 
     async def acquire(self):
         async with self.lock:
