@@ -11,7 +11,6 @@ BrawlDogg is a asynchronous Python wrapper for the official Brawl Stars API. It 
   * **Structured Error Handling:** API errors are mapped to specific, catchable Python exceptions (e.g., `NotFound`, `RateLimited`).
   * **Modern Python & Models:** Uses `Pydantic` for strict data validation and type checking, ensuring reliable model objects.
 
----
 
 ## Installation
 
@@ -19,7 +18,6 @@ BrawlDogg is a asynchronous Python wrapper for the official Brawl Stars API. It 
 pip install brawldogg 
 ```
 
----
 
 ## Usage
 
@@ -59,7 +57,6 @@ if __name__ == "__main__":
     asyncio.run(main())
 ```
 
----
 
 ## Configuration
 
@@ -80,7 +77,6 @@ The following base URL and structured endpoints are used internally:
   * **Base URL:** `https://api.brawlstars.com/v1`
   * **Endpoints include:** `/players/{tag}`, `/clubs/{tag}/members`, `/events/rotation`, `/rankings/{country}/players`, etc.
 
----
 
 ## Structured Error Handling
 
@@ -95,7 +91,6 @@ All HTTP errors returned by the API are caught and re-raised as custom, descript
 | 500 | `InternalServerError` | Unknown error on the Supercell server. |
 | 503 | `Unavailable` | Service temporarily unavailable. |
 
----
 
 ## Data Models and Types
 
