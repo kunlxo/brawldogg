@@ -1,8 +1,9 @@
 import asyncio
+
 from brawldogg import BrawlStarsClient
 from brawldogg.exceptions import BadRequest, NotFound, RateLimited
 
-API_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImQ5MTdmZjQ2LTliN2MtNGQyOC04MzAxLTc1OTBlMDU5MjZiZSIsImlhdCI6MTc2Mjk1NTYxMywic3ViIjoiZGV2ZWxvcGVyLzY4OTQ2ZGZlLTU4YzUtZmE0MS0yZDQzLTBjNDY4NGUwMWFiMCIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiODkuMTA3LjExLjM5Il0sInR5cGUiOiJjbGllbnQifV19.lxvvFFn8X90LPtu4yYXcCTPVSILDH8fs695XDHdkEJTvBvIsOWFVVGjttJkV9MRGArFu2T-RHLJLzNi2gP1oSw"
+API_TOKEN = ""
 
 
 async def main():
@@ -17,11 +18,16 @@ async def main():
 
             # 2. Fetch Battle Log
             battlelog = await bs.get_player_battlelog(player_tag)
-            print(f"Last Battle Mode: {battlelog[0].battle.mode}")
+            print(f"Last Battle Mode: {battlelog.items[0].battle.mode}")
+
+            club_membs = await bs.get_club_members(
+                "#290CJVLYC", limit=1, after="eyJwb3MiOjF9", before=None
+            )
+            print(club_membs)
 
         except BadRequest:
             print(
-                f"Error: Incorrect parameteres for the request. Make sure API_TOKEN is valid."
+                "Error: Incorrect parameteres for the request. Make sure API_TOKEN is valid."
             )
         except NotFound:
             print(f"Error: Player {player_tag} not found.")

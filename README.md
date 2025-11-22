@@ -15,7 +15,8 @@ BrawlDogg is a asynchronous Python wrapper for the official Brawl Stars API. It 
 ## Installation
 
 ```bash
-pip install brawldogg 
+poetry install
+poetry run python examples/basic_usage.py
 ```
 
 

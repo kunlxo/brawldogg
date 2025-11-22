@@ -1,8 +1,10 @@
 from datetime import datetime
+
 from pydantic import BaseModel, Field
-from .events import Event
-from .constants import GAME_MODE
+
 from ..utils.validators import time_validator
+from .constants import GAME_MODE
+from .events import Event
 
 
 class BattleBrawler(BaseModel):
