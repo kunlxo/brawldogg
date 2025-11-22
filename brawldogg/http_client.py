@@ -1,20 +1,21 @@
 import asyncio
 import logging
 from typing import Any, Literal, Self
+
 import httpx
 
 from .constants import BASE_URL
 from .exceptions import (
-    HTTPException,
-    BadRequest,
     AccessDenied,
+    BadRequest,
+    HTTPException,
+    InternalServerError,
     NotFound,
     RateLimited,
-    InternalServerError,
     Unavailable,
 )
-from .utils.rate_limiter import RateLimiter
 from .utils.cache import TTLCache
+from .utils.rate_limiter import RateLimiter
 
 log = logging.getLogger("brawldogg.http")
 
@@ -81,7 +82,7 @@ class HTTPClient:
         reason = data.get("reason", response.reason_phrase or "Unknown Error")
         message = data.get("message", data)
 
-        match (status_code := response.status_code):
+        match status_code := response.status_code:
             case 400:
                 raise BadRequest(reason, message)
             case 403:

@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
-from .player import PlayerIcon
+
 from .constants import CLUB_ROLES, CLUB_TYPE
+from .player import PlayerIcon
 
 
 class ClubName(BaseModel):

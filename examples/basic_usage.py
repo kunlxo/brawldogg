@@ -20,10 +20,15 @@ async def main():
             battlelog = await bs.get_player_battlelog(player_tag)
             print(f"Last Battle Mode: {battlelog.items[0].battle.mode}")
 
-            club_membs = await bs.get_club_members(
-                "#290CJVLYC", limit=1, after="eyJwb3MiOjF9", before=None
-            )
-            print(club_membs)
+            # 3. Fetch Club Members using paging
+            if club := player.club:
+                top3 = await bs.get_club_members(club.tag, limit=3)
+                print(f"Top3 of the club {[member.name for member in top3.items]}")
+
+                rest = await bs.get_club_members(
+                    club.tag, after=top3.paging.cursors.after
+                )
+                print(f"The rest of the club {[member.name for member in rest.items]}")
 
         except BadRequest:
             print(

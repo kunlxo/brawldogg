@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+
 from .brawler import BrawlerStat
 
 

@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
-from .player import PlayerIcon
+
 from .club import ClubName
+from .player import PlayerIcon
 
 
 class RankingModel(BaseModel):

@@ -1,7 +1,9 @@
 from datetime import datetime
+
 from pydantic import BaseModel, Field
-from .constants import GAME_MODE
+
 from ..utils.validators import time_validator
+from .constants import GAME_MODE
 
 
 class GameMode(BaseModel):
