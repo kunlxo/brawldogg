@@ -37,6 +37,7 @@ class HTTPClient:
         base_url: str = BASE_URL,
     ):
         self.tokens = [token] if isinstance(token, str) else token
+        self.tokens = [t for t in self.tokens if t != ""]
         if not self.tokens:
             raise ValueError("At least one API token is required")
 
