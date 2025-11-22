@@ -4,26 +4,18 @@ version = "0.1.0"
 description = "Asynchronous Brawl Stars API Wrapper"
 readme = "README.md"
 
-# --- CRITICAL FOR FINDING SOURCE CODE ---
-# This tells Poetry: "The files for the 'brawldogg' package
-# are located in the subdirectory also named 'brawldogg'."
 packages = [
     { include = "brawldogg" }
 ]
-# ----------------------------------------
 
-# --- Dependencies ---
 [tool.poetry.dependencies]
-python = ">=3.10" # Changed from 3.13 for broader compatibility
+python = ">=3.10"
 httpx = "^0.28.1"
 pydantic = "^2.12.4"
-# pydantic-core is a dependency of pydantic, usually not required here
 
-# --- Dev Dependencies (If needed for testing/linting) ---
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.0.0"
 
-# --- Build System (Standard for Poetry) ---
 [build-system]
 requires = ["poetry-core>=1.9.0"]
 build-backend = "poetry.core.masonry.api"
