@@ -2,7 +2,7 @@
 
 Asynchronous Python client for the official Brawl Stars API. It makes it easy to get player, club, ranking, and game data with built-in error handling and Pydantic models for structured results.
 
-## Features
+## Key Features
 
   * **Asynchronous:** Built on `httpx` and `asyncio` for non-blocking operations.
   * **Resilient Request Handling:** Includes token rotation, exponential backoff, and retries for handling 403 (Access Denied) and 429 (Rate Limited) errors.
