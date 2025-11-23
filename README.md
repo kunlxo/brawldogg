@@ -1,6 +1,6 @@
 # BrawlDogg: Asynchronous Brawl Stars API Wrapper
 
-BrawlDogg is a asynchronous Python wrapper for the official Brawl Stars API. It is designed for high-performance applications, featuring built-in resilience and strict data validation against API limitations.
+BrawlDogg is an asynchronous Python client for the official Brawl Stars API. It makes it easy to get player, club, ranking, and game data with built-in error handling and Pydantic models for structured results.
 
 ## Key Features
 
