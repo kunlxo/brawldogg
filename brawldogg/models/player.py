@@ -24,7 +24,7 @@ class Player(BaseModel):
     is_qualified_from_championship_challenge: bool = Field(
         alias="isQualifiedFromChampionshipChallenge"
     )
-    victories_3vs3: int = Field(alias="victories3v3", validation_alias="3v3Victories")
+    victories_3vs3: int = Field(alias="victories3v3", validation_alias="3vs3Victories")
     solo_victories: int = Field(alias="soloVictories")
     duo_victories: int = Field(alias="duoVictories")
     best_robo_rumble_time: int = Field(alias="bestRoboRumbleTime")
