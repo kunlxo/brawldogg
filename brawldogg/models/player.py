@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from .brawler import BrawlerStat
 
@@ -31,3 +31,17 @@ class Player(BaseModel):
     best_time_as_big_brawler: int = Field(alias="bestTimeAsBigBrawler")
     club: PlayerClub | None
     brawlers: list[BrawlerStat] = Field(default_factory=list)
+
+    max_winstreak: int = 0
+    current_winstreak: int = 0
+
+    @model_validator(mode="after")
+    def compute_winstreaks(self):
+        max_winstreak = 0
+        current_winstreak = 0
+        for b in self.brawlers:
+            max_winstreak = max(max_winstreak, b.max_win_streak)
+            current_winstreak = max(current_winstreak, b.current_win_streak)
+        self.max_winstreak = max_winstreak
+        self.current_winstreak = current_winstreak
+        return self
