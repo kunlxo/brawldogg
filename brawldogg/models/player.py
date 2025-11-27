@@ -13,7 +13,7 @@ class PlayerIcon(BaseModel):
 
 
 class WinStreak(BaseModel):
-    winstreak: int = 0
+    value: int = 0
     brawler_id: int | None = None
 
 
@@ -51,13 +51,13 @@ class Player(BaseModel):
 
         for b in self.brawlers:
             # MAX WINSTREAK
-            if b.max_win_streak > self.max_winstreak.winstreak:
-                self.max_winstreak.winstreak = b.max_win_streak
+            if b.max_win_streak > self.max_winstreak.value:
+                self.max_winstreak.value = b.max_win_streak
                 self.max_winstreak.brawler_id = b.id
 
             # CURRENT WINSTREAK
-            if b.current_win_streak > self.current_winstreak.winstreak:
-                self.current_winstreak.winstreak = b.current_win_streak
+            if b.current_win_streak > self.current_winstreak.value:
+                self.current_winstreak.value = b.current_win_streak
                 self.current_winstreak.brawler_id = b.id
 
             # TROPHIES > 1000
