@@ -49,8 +49,6 @@ class Player(BaseModel):
         current_winstreak_id = None
 
         for b in self.brawlers:
-            max_winstreak = max(max_winstreak, b.max_win_streak)
-            current_winstreak = max(current_winstreak, b.current_win_streak)
             if b.max_win_streak > max_winstreak:
                 max_winstreak = b.max_win_streak
                 max_winstreak_id = b.id
