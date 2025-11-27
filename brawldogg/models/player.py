@@ -37,8 +37,8 @@ class Player(BaseModel):
     club: PlayerClub | None
     brawlers: list[BrawlerStat] = Field(default_factory=list)
 
-    max_winstreak: WinStreak
-    current_winstreak: WinStreak
+    max_winstreak: WinStreak = Field(default_factory=WinStreak)
+    current_winstreak: WinStreak = Field(default_factory=WinStreak)
 
     @model_validator(mode="after")
     def compute_winstreaks(self):
