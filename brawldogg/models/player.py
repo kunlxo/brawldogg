@@ -39,7 +39,9 @@ class Player(BaseModel):
 
     max_winstreak: WinStreak = Field(default_factory=WinStreak)
     current_winstreak: WinStreak = Field(default_factory=WinStreak)
+
     trophies_over_1000: int = 0
+    trophies_box_id: int = 1
 
     @model_validator(mode="after")
     def compute_brawlers_stats(self):
@@ -61,5 +63,17 @@ class Player(BaseModel):
             # TROPHIES > 1000
             if b.trophies > 1000:
                 self.trophies_over_1000 += b.trophies - 1000
+
+        match self.trophies_over_1000:
+            case x if x > 3000:
+                self.trophies_box_id = 5
+            case x if x >= 1000:
+                self.trophies_box_id = 4
+            case x if x >= 400:
+                self.trophies_box_id = 3
+            case x if x >= 100:
+                self.trophies_box_id = 2
+            case _:
+                self.trophies_box_id = 1
 
         return self
