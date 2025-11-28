@@ -41,7 +41,7 @@ class Battle(BaseModel):
 class TeamBattle(Battle):
     result: str
     duration: int
-    star_player: BattlePlayer = Field(alias="starPlayer")
+    star_player: BattlePlayer | None = Field(alias="starPlayer", default=None)
     teams: list[list[BattlePlayer]]
 
 
